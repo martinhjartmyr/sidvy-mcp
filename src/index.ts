@@ -73,8 +73,7 @@ class SidvyMcpServer {
       {
         name: 'sidvy-mcp',
         version: '1.0.0',
-        description:
-          'MCP Server for Sidvy API - A comprehensive note-taking system integration',
+        description: 'MCP Server for Sidvy API - A comprehensive note-taking system integration',
       },
       {
         capabilities: {
@@ -164,7 +163,7 @@ class SidvyMcpServer {
         if (process.env.DEBUG === 'true') {
           console.error(`Tool call error for ${name}:`, error)
         }
-        
+
         // Return error as structured content
         return {
           content: [
@@ -201,7 +200,7 @@ class SidvyMcpServer {
       console.error(`   - Workspaces: ${this.workspaceTools.getTools().length} tools`)
       console.error(`🔗 API URL: ${process.env.SIDVY_API_URL || 'https://sidvy.com/api'}`)
     }
-    
+
     await this.server.connect(transport)
     if (process.env.DEBUG === 'true') {
       console.error('✅ MCP Server connected and ready!')
@@ -217,14 +216,20 @@ class SidvyMcpServer {
     try {
       console.error('🔍 Validating API key...')
       const workspacesResponse = await this.client.get<any[]>('/workspace')
-      
-      if (!workspacesResponse || !('data' in workspacesResponse) || !Array.isArray(workspacesResponse.data)) {
-        console.error('❌ API key validation failed. Please check your SIDVY_API_TOKEN environment variable.')
+
+      if (
+        !workspacesResponse ||
+        !('data' in workspacesResponse) ||
+        !Array.isArray(workspacesResponse.data)
+      ) {
+        console.error(
+          '❌ API key validation failed. Please check your SIDVY_API_TOKEN environment variable.',
+        )
         return
       }
 
       console.error('✅ API key validation successful')
-      
+
       // Get default workspace info
       const defaultWorkspace = workspacesResponse.data.find((w: any) => w.isDefault)
       if (defaultWorkspace) {

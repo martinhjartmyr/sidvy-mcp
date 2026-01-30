@@ -34,14 +34,14 @@
   },
   "homepage": "https://github.com/martinhjartmyr/sidvy-mcp#readme",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.6.0",
-    "dotenv": "^16.3.0"
+    "@modelcontextprotocol/sdk": "^0.6.1",
+    "dotenv": "^16.6.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
-    "prettier": "^3.6.2",
-    "tsx": "^4.6.0",
-    "typescript": "^5.3.0"
+    "@types/node": "^20.19.30",
+    "prettier": "^3.8.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -10,20 +10,25 @@ export class SidvyApiClient {
       'Content-Type': 'application/json',
       'User-Agent': 'Sidvy-MCP-Server/1.0.0',
     }
-    
+
     if (config.apiToken) {
       this.baseHeaders.Authorization = `Bearer ${config.apiToken}`
     }
   }
 
-  private async request<T>(method: string, url: string, data?: any, params?: Record<string, any>): Promise<ApiResponse<T>> {
+  private async request<T>(
+    method: string,
+    url: string,
+    data?: any,
+    params?: Record<string, any>,
+  ): Promise<ApiResponse<T>> {
     const baseUrl = this.config.apiUrl.endsWith('/') ? this.config.apiUrl : this.config.apiUrl + '/'
     const endpoint = url.startsWith('/') ? url.slice(1) : url
     const fullUrl = new URL(endpoint, baseUrl)
-    
+
     // Add query parameters
     if (params) {
-      Object.keys(params).forEach(key => {
+      Object.keys(params).forEach((key) => {
         if (params[key] !== undefined && params[key] !== null) {
           fullUrl.searchParams.append(key, String(params[key]))
         }
@@ -46,13 +51,13 @@ export class SidvyApiClient {
 
     try {
       const response = await fetch(fullUrl.toString(), requestInit)
-      
+
       if (this.config.debug) {
         console.error(`API Response: ${response.status} ${fullUrl.toString()}`)
       }
 
       const responseData = await response.json().catch(() => null)
-      
+
       if (this.config.debug && responseData) {
         console.error('Response Data:', JSON.stringify(responseData, null, 2))
       }
@@ -62,7 +67,7 @@ export class SidvyApiClient {
         if (responseData) {
           return responseData as ApiResponse<T>
         }
-        
+
         return {
           success: false,
           error: {
@@ -82,7 +87,7 @@ export class SidvyApiClient {
       if (this.config.debug) {
         console.error('API Error:', error)
       }
-      
+
       return {
         success: false,
         error: {
