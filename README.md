@@ -82,6 +82,25 @@ Alternative using absolute path:
 }
 ```
 
+#### Claude Code Configuration
+
+Add to your `~/.claude/settings.json` (or project-level `.claude/settings.json`):
+
+```json
+{
+  "mcpServers": {
+    "sidvy": {
+      "command": "node",
+      "args": ["/path/to/sidvy-mcp/build/index.js"],
+      "env": {
+        "SIDVY_API_TOKEN": "your_jwt_token_here",
+        "SIDVY_API_URL": "https://sidvy.com/api"
+      }
+    }
+  }
+}
+```
+
 #### OpenAI ChatGPT Configuration
 
 Add to your MCP configuration:
