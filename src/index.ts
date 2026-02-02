@@ -19,10 +19,12 @@ import { NotesApi } from './api/notes.js'
 import { GroupsApi } from './api/groups.js'
 import { TodosApi } from './api/todos.js'
 import { WorkspacesApi } from './api/workspaces.js'
+import { CalendarApi } from './api/calendar.js'
 import { NotesTools } from './tools/notes-tools.js'
 import { GroupsTools } from './tools/groups-tools.js'
 import { TodosTools } from './tools/todos-tools.js'
 import { WorkspaceTools } from './tools/workspace-tools.js'
+import { CalendarTools } from './tools/calendar-tools.js'
 
 class SidvyMcpServer {
   private server: Server
@@ -31,10 +33,12 @@ class SidvyMcpServer {
   private groupsApi: GroupsApi
   private todosApi: TodosApi
   private workspacesApi: WorkspacesApi
+  private calendarApi: CalendarApi
   private notesTools: NotesTools
   private groupsTools: GroupsTools
   private todosTools: TodosTools
   private workspaceTools: WorkspaceTools
+  private calendarTools: CalendarTools
   private allTools: Tool[] = []
 
   constructor() {
@@ -53,12 +57,14 @@ class SidvyMcpServer {
     this.groupsApi = new GroupsApi(this.client)
     this.todosApi = new TodosApi(this.client)
     this.workspacesApi = new WorkspacesApi(this.client)
+    this.calendarApi = new CalendarApi(this.client)
 
     // Initialize tool handlers
     this.notesTools = new NotesTools(this.notesApi, this.client)
     this.groupsTools = new GroupsTools(this.groupsApi, this.client)
     this.todosTools = new TodosTools(this.todosApi, this.client)
     this.workspaceTools = new WorkspaceTools(this.workspacesApi, this.client)
+    this.calendarTools = new CalendarTools(this.calendarApi, this.client)
 
     // Collect all tools
     this.allTools = [
@@ -66,6 +72,7 @@ class SidvyMcpServer {
       ...this.groupsTools.getTools(),
       ...this.todosTools.getTools(),
       ...this.workspaceTools.getTools(),
+      ...this.calendarTools.getTools(),
     ]
 
     // Initialize MCP server
@@ -155,6 +162,16 @@ class SidvyMcpServer {
               },
             ],
           }
+        } else if (this.calendarTools.getTools().some((tool) => tool.name === name)) {
+          const result = await this.calendarTools.handleToolCall(name, args)
+          return {
+            content: [
+              {
+                type: 'text',
+                text: JSON.stringify(result, null, 2),
+              },
+            ],
+          }
         } else {
           throw new Error(`Unknown tool: ${name}`)
         }
@@ -198,6 +215,7 @@ class SidvyMcpServer {
       console.error(`   - Groups: ${this.groupsTools.getTools().length} tools`)
       console.error(`   - Todos: ${this.todosTools.getTools().length} tools`)
       console.error(`   - Workspaces: ${this.workspaceTools.getTools().length} tools`)
+      console.error(`   - Calendar: ${this.calendarTools.getTools().length} tools`)
       console.error(`🔗 API URL: ${process.env.SIDVY_API_URL || 'https://sidvy.com/api'}`)
     }
 

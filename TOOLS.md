@@ -402,6 +402,71 @@ Rename an existing workspace.
 
 ---
 
+## 📅 Calendar Tools
+
+### `get_daily_note`
+
+Get today's daily note or a specific date's note. Creates the note automatically if it doesn't exist, using the workspace's default daily template.
+
+**Parameters:**
+
+- `date` (string, optional): Date in YYYY-MM-DD format (defaults to today)
+- `workspaceId` (string, optional): Workspace ID (uses default workspace)
+
+### `update_daily_note`
+
+Update the content of today's daily note or a specific date's note. Creates the note first if it doesn't exist.
+
+**Parameters:**
+
+- `content` (string, required): New note content in markdown format
+- `date` (string, optional): Date in YYYY-MM-DD format (defaults to today)
+- `workspaceId` (string, optional): Workspace ID (uses default workspace)
+
+### `append_to_daily_note`
+
+Append content to today's daily note or a specific date's note. Creates the note first if it doesn't exist.
+
+**Parameters:**
+
+- `content` (string, required): Content to append in markdown format
+- `date` (string, optional): Date in YYYY-MM-DD format (defaults to today)
+- `workspaceId` (string, optional): Workspace ID (uses default workspace)
+
+### `get_weekly_note`
+
+Get the current week's note or a specific week's note. Creates the note automatically if it doesn't exist, using the workspace's default weekly template.
+
+**Parameters:**
+
+- `week` (number, optional): ISO week number (1-53). Must be provided with year.
+- `year` (number, optional): ISO week-numbering year. Must be provided with week.
+- `workspaceId` (string, optional): Workspace ID (uses default workspace)
+
+### `update_weekly_note`
+
+Update the content of the current week's note or a specific week's note. Creates the note first if it doesn't exist.
+
+**Parameters:**
+
+- `content` (string, required): New note content in markdown format
+- `week` (number, optional): ISO week number (1-53). Must be provided with year.
+- `year` (number, optional): ISO week-numbering year. Must be provided with week.
+- `workspaceId` (string, optional): Workspace ID (uses default workspace)
+
+### `append_to_weekly_note`
+
+Append content to the current week's note or a specific week's note. Creates the note first if it doesn't exist.
+
+**Parameters:**
+
+- `content` (string, required): Content to append in markdown format
+- `week` (number, optional): ISO week number (1-53). Must be provided with year.
+- `year` (number, optional): ISO week-numbering year. Must be provided with week.
+- `workspaceId` (string, optional): Workspace ID (uses default workspace)
+
+---
+
 ## Usage Examples
 
 ### Create a note with todos
@@ -434,5 +499,48 @@ Rename an existing workspace.
 {
   "name": "get_workspace_stats",
   "arguments": {}
+}
+```
+
+### Get today's daily note
+
+```json
+{
+  "name": "get_daily_note",
+  "arguments": {}
+}
+```
+
+### Append to daily note
+
+```json
+{
+  "name": "append_to_daily_note",
+  "arguments": {
+    "content": "## Meeting Notes\n\n- Discussed project timeline\n- Action items assigned"
+  }
+}
+```
+
+### Get specific week's note
+
+```json
+{
+  "name": "get_weekly_note",
+  "arguments": {
+    "week": 5,
+    "year": 2025
+  }
+}
+```
+
+### Update weekly note
+
+```json
+{
+  "name": "update_weekly_note",
+  "arguments": {
+    "content": "## Week 5 Summary\n\n### Accomplishments\n- Completed API integration\n- Fixed critical bugs\n\n### Next Week\n- Start UI testing"
+  }
 }
 ```

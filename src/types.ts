@@ -171,6 +171,20 @@ export interface DeleteWorkspaceRequest {
   workspaceId: string
 }
 
+// Calendar note request types
+export interface UpdateDailyNoteRequest {
+  content: string
+  workspaceId?: string
+  date?: string // YYYY-MM-DD format
+}
+
+export interface UpdateWeeklyNoteRequest {
+  content: string
+  workspaceId?: string
+  week?: number // ISO week number (1-53)
+  year?: number // ISO week-numbering year
+}
+
 // Query parameter types
 export interface ListNotesParams {
   page?: number
