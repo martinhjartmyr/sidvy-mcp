@@ -156,6 +156,7 @@ See the [sidvy-skill repository](https://github.com/martinhjartmyr/sidvy-skill) 
 - `get_group_tree` - Get complete group hierarchy
 - `get_root_groups` - Get top-level groups
 - `get_child_groups` - Get child groups of a parent
+- `get_group_path` - Get the full path from root to a group
 - `move_group` - Reorganize group structure
 - `create_group_path` - Create nested group paths
 
@@ -163,6 +164,7 @@ See the [sidvy-skill repository](https://github.com/martinhjartmyr/sidvy-skill) 
 
 - `list_todos` - List todos with filtering
 - `create_todo` - Create new todos
+- `create_todos_for_note` - Create multiple todos for a note at once
 - `update_todo` - Edit todo text or status
 - `delete_todo` - Remove todos
 - `toggle_todo` - Switch completion status
@@ -171,17 +173,30 @@ See the [sidvy-skill repository](https://github.com/martinhjartmyr/sidvy-skill) 
 - `get_completed_todos` - Get finished todos
 - `get_todos_for_note` - Get todos for specific note
 - `get_todo_stats` - Get completion statistics
+- `search_todos` - Search todos by text content
 
 ### Workspace Management
 
 - `list_workspaces` - List all workspaces
 - `create_workspace` - Create new workspace (max 2)
 - `update_workspace` - Rename workspaces
+- `rename_workspace` - Rename an existing workspace
 - `delete_workspace` - Remove workspace and content
 - `get_workspace` - Get workspace details
 - `get_default_workspace` - Get user's default workspace
+- `get_workspace_by_name` - Find a workspace by name
 - `get_workspace_stats` - Get content statistics
+- `can_create_workspace` - Check if another workspace can be created
 - `switch_workspace` - Change active workspace
+
+### Calendar Management
+
+- `get_daily_note` - Get a daily note for a specific date
+- `update_daily_note` - Update a daily note's content
+- `append_to_daily_note` - Append content to a daily note
+- `get_weekly_note` - Get a weekly note for a specific week
+- `update_weekly_note` - Update a weekly note's content
+- `append_to_weekly_note` - Append content to a weekly note
 
 ## Example Usage
 
