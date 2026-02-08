@@ -116,6 +116,24 @@ Add to your MCP configuration:
 }
 ```
 
+## Agent Skill
+
+A companion [Sidvy Skill](https://github.com/martinhjartmyr/sidvy-skill) is available for AI agents that support the [Agent Skills](https://agentskills.io) format (Claude Code, OpenClaw, etc.). The skill provides contextual instructions that help agents use the Sidvy MCP tools more effectively.
+
+### Install with skills CLI
+
+```bash
+npx skills add martinhjartmyr/sidvy-skill
+```
+
+### Install with OpenClaw
+
+```bash
+openclaw skills add martinhjartmyr/sidvy-skill
+```
+
+See the [sidvy-skill repository](https://github.com/martinhjartmyr/sidvy-skill) for full documentation and manual installation.
+
 ## Available Tools
 
 ### Notes Management
