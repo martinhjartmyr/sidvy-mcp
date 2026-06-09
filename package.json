@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/martinhjartmyr/sidvy-mcp#readme",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.6.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "dotenv": "^16.6.1"
   },
   "devDependencies": {
